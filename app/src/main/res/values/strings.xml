@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Aplicación base</string>
+    <string name="placeholder">Placeholder</string>
+    <string name="second_tap_to_close_app">Pulse de nuevo para cerrar la aplicación</string>
+</resources>

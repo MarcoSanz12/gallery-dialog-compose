@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="GalleryDialog" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Sombras -->
+        <item name="android:spotShadowAlpha">0.1</item>
+        <item name="android:ambientShadowAlpha">0.2</item>
+    </style>
+</resources>

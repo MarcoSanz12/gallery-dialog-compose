@@ -26,3 +26,4 @@ rootProject.name = "Gallery Dialog Compose"
 include(":app")
 include(":gallery_dialog")
 include(":gallery_dialog")
+include(":core-ui")

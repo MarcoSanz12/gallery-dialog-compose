@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.marcosanz.gallerydialog"
-    compileSdk = 37
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.marcosanz.gallerydialog_compose"
         minSdk = 23
-        targetSdk = 37
+        targetSdk = 36
         versionCode = 1
         versionName = "0.0.1"
 
@@ -65,21 +65,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
-    compileSdkMinor = 0
 }
 
 dependencies {
-    // CORE
-    implementation(libs.bundles.core)
-
-    // UI
+    implementation(project(":gallery_dialog"))
+    implementation(project(":core-ui"))
     implementation(platform(libs.compose.bom))
-    implementation(libs.bundles.ui)
-    implementation(libs.bundles.ui.media)
-
-    //PERMISSION
-    implementation(libs.accompanist.permissions)
-
     // TEST
     testImplementation(libs.bundles.test.core)
 

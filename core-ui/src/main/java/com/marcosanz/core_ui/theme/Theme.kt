@@ -1,28 +1,36 @@
-package com.marcosanz.app.core.ui.theme
+package com.marcosanz.core_ui.theme
 
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Typography
-import com.marcosanz.app.core.ui.theme.defaults.AppTextStyle
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Composable
 import com.marcosanz.core_ui.extensions.copyForTheme
+import com.marcosanz.core_ui.theme.defaults.AppCornerRadius
+import com.marcosanz.core_ui.theme.defaults.AppTextStyle
 
-/*val DMSansFontFamily = FontFamily(
-    // Standard
-    Font(R.font.dmsans_regular, FontWeight.Normal, FontStyle.Normal),
-    Font(R.font.dmsans_regular_italic, FontWeight.Normal, FontStyle.Italic),
+@Composable
+fun GalleryTheme(
+    content: @Composable() () -> Unit
+) {
+    MaterialTheme(
+        colorScheme = AppLightScheme,
+        shapes = AppShapes,
+        typography = AppTypography,
+        content = content
+    )
+}
 
-    // Medium
-    Font(R.font.dmsans_medium, FontWeight.Medium, FontStyle.Normal),
-    Font(R.font.dmsans_medium_italic, FontWeight.Medium, FontStyle.Italic),
-
-    // Bold
-    Font(R.font.dmsans_bold, FontWeight.Bold, FontStyle.Normal),
-    Font(R.font.dmsans_bold_italic, FontWeight.Bold, FontStyle.Italic),
+private val AppLightScheme = lightColorScheme()
+private val AppShapes = Shapes(
+    extraSmall = AppCornerRadius.smallShape,
+    small = AppCornerRadius.smallShape,
+    medium = AppCornerRadius.mediumShape,
+    large = AppCornerRadius.largeShape,
+    extraLarge = AppCornerRadius.extraLargeShape
 )
 
-val PanoFontFamily = FontFamily(
-    Font(R.font.pano_bold, FontWeight.Bold, FontStyle.Normal)
-)*/
-
-val AppTypography = Typography(
+private val AppTypography = Typography(
     displayLarge = AppTextStyle.Body.body.copyForTheme(),
     displayMedium = AppTextStyle.Body.body.copyForTheme(),
     displaySmall = AppTextStyle.Body.body.copyForTheme(),

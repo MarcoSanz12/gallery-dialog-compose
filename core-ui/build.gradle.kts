@@ -5,8 +5,10 @@ plugins {
 }
 
 android {
-    namespace = "com.marcosanz.gallery_dialog"
-    compileSdk = 36
+    namespace = "com.marcosanz.core_ui"
+    compileSdk {
+        version = release(36)
+    }
 
     defaultConfig {
         minSdk = 23
@@ -31,8 +33,16 @@ android {
 }
 
 dependencies {
-    implementation(project(":core-ui"))
+    // CORE
+    api(libs.bundles.core)
+
+    // UI
     implementation(platform(libs.compose.bom))
+    api(libs.bundles.ui)
+    api(libs.bundles.ui.media)
+
+    //PERMISSION
+    api(libs.accompanist.permissions)
 
     // TEST
     testImplementation(libs.bundles.test.core)

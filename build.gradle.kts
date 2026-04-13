@@ -3,4 +3,3 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.ksp) apply false
 }
-val compileSdkVersion by extra("android-37.0")

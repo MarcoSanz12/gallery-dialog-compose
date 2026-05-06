@@ -1,4 +1,4 @@
-package com.marcosanz.app.util.platform
+package com.marcosanz.app.core.platform
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -19,7 +19,7 @@ abstract class BaseViewModel<Action : Any, Event : Any, State : Any>(
     protected val initialState: State
 ) : ViewModel() {
 
-    protected val _uiState = MutableStateFlow(initialState)
+    open val _uiState = MutableStateFlow(initialState)
     val uiState: StateFlow<State> = _uiState.asStateFlow()
 
     protected val _event = MutableSharedFlow<Event>(extraBufferCapacity = 1)
@@ -38,14 +38,8 @@ abstract class BaseViewModel<Action : Any, Event : Any, State : Any>(
         _event.emit(event)
     }
 
-    protected fun trySendEvent(event: Event) {
-        viewModelScope.launch {
-            _event.emit(event)
-        }
-    }
-
     @Composable
-    fun collectUiState() = uiState.collectAsStateWithLifecycle()
+    fun collectUiState() = uiState.collectAsStateWithLifecycle(context = Dispatchers.Main.immediate)
 
     @Composable
     fun collectEvent(block: suspend (Event) -> Unit) {

@@ -1,9 +1,10 @@
 package com.marcosanz.app
 
 import android.app.Application
-import com.marcosanz.gallerydialog.BuildConfig
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
+@HiltAndroidApp
 class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()

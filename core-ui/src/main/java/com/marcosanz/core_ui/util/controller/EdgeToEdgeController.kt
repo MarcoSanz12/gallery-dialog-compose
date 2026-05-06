@@ -1,5 +1,8 @@
-package com.marcosanz.app.util.controller
+package com.marcosanz.core_ui.util.controller
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import android.graphics.Color
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
@@ -8,6 +11,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.window.DialogWindowProvider
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 
 object EdgeToEdgeController {
 
@@ -18,14 +27,14 @@ object EdgeToEdgeController {
     var currentStatusBarMode: Mode = Mode.LIGHT
     var currentNavigationBarMode: Mode = Mode.LIGHT
 
-    private val statusBarLight = SystemBarStyle.light(Color.TRANSPARENT, Color.BLACK)
-    private val statusBarDark = SystemBarStyle.dark(Color.TRANSPARENT)
+    private val statusBarLight = SystemBarStyle.Companion.light(Color.TRANSPARENT, Color.BLACK)
+    private val statusBarDark = SystemBarStyle.Companion.dark(Color.TRANSPARENT)
 
-    private val navigationBarLight = SystemBarStyle.light(
+    private val navigationBarLight = SystemBarStyle.Companion.light(
         Color.TRANSPARENT,
         Color.TRANSPARENT
     )
-    private val navigationBarDark = SystemBarStyle.dark(
+    private val navigationBarDark = SystemBarStyle.Companion.dark(
         Color.TRANSPARENT
     )
 
@@ -58,27 +67,55 @@ object EdgeToEdgeController {
         currentNavigationBarMode = navigationBarMode
     }
 
-    /**
-     * Ajusta los colores de statusBar y navigationBar de la Activity actual.
-     *
-     * @param mode Modo de colores a aplicar.
-     * @param keep true Sí se debe mantener el modo actual de colores, false si debe volver al previo
-     */
     @Composable
-    fun SetEdgeToEdgeStyle(mode: Mode = Mode.LIGHT, keep: Boolean = false) {
-        SetEdgeToEdgeStyle(
-            statusBarMode = mode,
-            navigationBarMode = mode,
-            keep = keep
-        )
+    fun SystemBarsVisibility(
+        visible: Boolean,
+        resetOnDispose: Boolean = true
+    ) {
+        val view = LocalView.current
+        val window = remember(view) {
+            val dialogWindow = (view.parent as? DialogWindowProvider)?.window
+            dialogWindow ?: view.context.findActivity()?.window
+        } ?: return
+
+        val controller = remember(window, view) {
+            WindowCompat.getInsetsController(window, view)
+        }
+
+        DisposableEffect(visible) {
+            controller.systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+
+            if (visible) {
+                controller.show(WindowInsetsCompat.Type.systemBars())
+            } else {
+                controller.hide(WindowInsetsCompat.Type.systemBars())
+            }
+
+            onDispose {
+                if (resetOnDispose) {
+                    controller.show(WindowInsetsCompat.Type.systemBars())
+                }
+            }
+        }
+    }
+
+    private fun Context.findActivity(): Activity? {
+        var context = this
+        while (context is ContextWrapper) {
+            if (context is Activity) return context
+            context = context.baseContext
+        }
+        return null
     }
 
     /**
-     * Ajusta los colores de statusBar y navigationBar de la Activity actual.
+     * Adjusts the statusBar and navigationBar colors of the current Activity.
      *
-     * @param statusBarMode Modo de colores a aplicar
-     * @param navigationBarMode Modo de colores a aplicar
-     * @param keep true Sí se debe mantener el modo actual de colores, false si debe volver al previo
+     * @param statusBarMode StatusBar color mode.
+     * @param navigationBarMode NavigationBar color mode.
+     * @param keep If you should be kept the previous mode or not.
+     *
      */
     @Composable
     fun SetEdgeToEdgeStyle(

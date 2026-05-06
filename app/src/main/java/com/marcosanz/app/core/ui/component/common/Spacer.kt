@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
-import com.marcosanz.app.core.ui.theme.defaults.AppPadding
+import com.marcosanz.core_ui.theme.defaults.AppPadding
 
 @Composable
 fun SpacerSmall(size: Dp = AppPadding.small) {

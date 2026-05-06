@@ -9,7 +9,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        minSdk = 23
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -33,6 +33,7 @@ android {
 dependencies {
     implementation(project(":core-ui"))
     implementation(platform(libs.compose.bom))
+    implementation(platform(libs.coil.bom))
 
     // TEST
     testImplementation(libs.bundles.test.core)

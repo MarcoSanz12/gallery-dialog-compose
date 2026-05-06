@@ -9,9 +9,10 @@ android {
     compileSdk {
         version = release(36)
     }
+    resourcePrefix = "gallery_dialog_"
 
     defaultConfig {
-        minSdk = 23
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -38,6 +39,7 @@ dependencies {
 
     // UI
     implementation(platform(libs.compose.bom))
+    implementation(platform(libs.coil.bom))
     api(libs.bundles.ui)
     api(libs.bundles.ui.media)
 

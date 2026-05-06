@@ -2,15 +2,16 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
-    namespace = "com.marcosanz.gallerydialog"
+    namespace = "com.marcosanz.app"
     compileSdk = 36
 
     defaultConfig {
         applicationId = "com.marcosanz.gallerydialog_compose"
-        minSdk = 23
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "0.0.1"
@@ -34,8 +35,20 @@ android {
         localeFilters += listOf("es", "en", "fr", "de")
     }
 
+    configurations.all {
+        resolutionStrategy {
+            force("org.jetbrains:annotations:23.0.0")
+        }
+        exclude(group = "com.intellij", module = "annotations")
+    }
+
+    packaging {
+        resources {
+            pickFirsts.add("META-INF/gradle/incremental.annotation.processors")
+        }
+    }
+
     /*
-        TODO Declarar aquí clave para firmar en release, no es 100% seguro pero bueno ¯\_(ツ)_/¯
         signingConfigs {
          create("release") {
              storeFile = file("key/base.jks")
@@ -68,9 +81,16 @@ android {
 }
 
 dependencies {
+    ksp(libs.hilt.android.compiler)
+    ksp(libs.androidx.hilt.compiler)
+
     implementation(project(":gallery_dialog"))
     implementation(project(":core-ui"))
     implementation(platform(libs.compose.bom))
+    implementation(platform(libs.coil.bom))
+
+    // DI - Hilt
+    implementation(libs.bundles.di)
     // TEST
     testImplementation(libs.bundles.test.core)
 

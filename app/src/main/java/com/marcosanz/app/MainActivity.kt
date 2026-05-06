@@ -3,9 +3,16 @@ package com.marcosanz.app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.marcosanz.app.core.ui.theme.BaseTheme
-import com.marcosanz.app.util.controller.EdgeToEdgeController
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.ui.Modifier
+import com.marcosanz.app.feature.MainScreen
+import com.marcosanz.core_ui.theme.GalleryTheme
+import com.marcosanz.core_ui.util.controller.EdgeToEdgeController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,7 +21,14 @@ class MainActivity : ComponentActivity() {
             mode = EdgeToEdgeController.Mode.LIGHT
         )
         setContent {
-            BaseTheme {
+            GalleryTheme {
+                Scaffold(
+                    content = { paddingValues ->
+                        Box(modifier = Modifier.padding(paddingValues)) {
+                            MainScreen()
+                        }
+                    }
+                )
             }
         }
     }

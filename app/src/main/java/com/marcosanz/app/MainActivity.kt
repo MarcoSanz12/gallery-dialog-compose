@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.marcosanz.app.feature.MainScreen
-import com.marcosanz.core_ui.theme.GalleryTheme
-import com.marcosanz.core_ui.util.controller.EdgeToEdgeController
+import com.marcosanz.gallery_core_ui.theme.GalleryTheme
+import com.marcosanz.gallery_core_ui.util.controller.EdgeToEdgeController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

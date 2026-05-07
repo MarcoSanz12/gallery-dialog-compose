@@ -1,7 +1,7 @@
 package com.marcosanz.app.util.provider
 
 import com.marcosanz.app.R
-import com.marcosanz.gallery_dialog.GalleryItem
+import com.marcosanz.gallery_common.model.GalleryItem
 
 object ExampleItemsProvider {
     // GalleryItems with Drawables

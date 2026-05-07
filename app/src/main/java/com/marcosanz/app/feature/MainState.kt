@@ -1,7 +1,7 @@
 package com.marcosanz.app.feature
 
 import com.marcosanz.app.util.provider.ExampleItemsProvider
-import com.marcosanz.gallery_dialog.GalleryItem
+import com.marcosanz.gallery_common.model.GalleryItem
 
 data class MainState(
     val galleryItems: List<GalleryItem> = ExampleItemsProvider.drawableItems,

@@ -33,9 +33,9 @@ import coil3.compose.AsyncImage
 import com.marcosanz.app.R
 import com.marcosanz.app.core.ui.component.common.SpacerLarge
 import com.marcosanz.app.core.ui.component.common.SpacerMedium
-import com.marcosanz.core_ui.theme.PreviewScaffold
-import com.marcosanz.core_ui.theme.defaults.AppPadding
-import com.marcosanz.gallery_dialog.GalleryItem
+import com.marcosanz.gallery_common.model.GalleryItem
+import com.marcosanz.gallery_core_ui.theme.PreviewScaffold
+import com.marcosanz.gallery_core_ui.theme.defaults.AppPadding
 
 @Preview
 @Composable
@@ -114,16 +114,20 @@ fun ExampleImageRow(
     onGalleryItemClick: (GalleryItem) -> Unit
 ) {
 
-    Column(modifier = modifier
-        .fillMaxWidth()
-        .height(200.dp)) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(200.dp)
+    ) {
         // Title
         Text(
             text = title,
             fontWeight = FontWeight.Bold,
             fontSize = 22.sp,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(imagesContentPadding).fillMaxWidth()
+            modifier = Modifier
+                .padding(imagesContentPadding)
+                .fillMaxWidth()
         )
         SpacerMedium()
         // Images

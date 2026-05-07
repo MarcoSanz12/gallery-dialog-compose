@@ -1,7 +1,7 @@
 package com.marcosanz.app.feature
 
 import com.marcosanz.app.core.platform.BaseViewModel
-import com.marcosanz.gallery_dialog.GalleryItem
+import com.marcosanz.gallery_common.model.GalleryItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject

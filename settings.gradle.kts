@@ -9,6 +9,7 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        mavenLocal()
     }
 }
 plugins {
@@ -19,11 +20,14 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven(url = "https://jitpack.io")
+        mavenLocal()
     }
 }
 
 rootProject.name = "Gallery Dialog Compose"
 include(":app")
-include(":gallery_dialog")
-include(":gallery_dialog")
-include(":core-ui")
+include(":gallery-dialog")
+include(":gallery-core-ui")
+include(":gallery-common")
+include(":panorama-dialog")

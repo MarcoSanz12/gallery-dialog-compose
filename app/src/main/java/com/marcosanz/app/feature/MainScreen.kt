@@ -9,9 +9,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.marcosanz.app.R
 import com.marcosanz.app.core.ui.component.image.ExampleImageRow
-import com.marcosanz.core_ui.theme.PreviewScaffold
+import com.marcosanz.gallery_core_ui.theme.PreviewScaffold
 import com.marcosanz.gallery_dialog.GalleryDialog
-import com.marcosanz.gallery_dialog.extension.rememberGalleryDialogOptions
+import com.marcosanz.gallery_dialog.util.extension.rememberGalleryDialogOptions
 
 @Preview
 @Composable

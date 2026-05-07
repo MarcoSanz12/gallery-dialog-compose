@@ -7,7 +7,9 @@ plugins {
 
 android {
     namespace = "com.marcosanz.app"
-    compileSdk = 36
+    compileSdk {
+        version = release(36)
+    }
 
     defaultConfig {
         applicationId = "com.marcosanz.gallerydialog_compose"
@@ -84,10 +86,13 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     ksp(libs.androidx.hilt.compiler)
 
-    implementation(project(":gallery_dialog"))
-    implementation(project(":core-ui"))
+    implementation(project(":gallery-dialog"))
+    implementation(project(":gallery-core-ui"))
     implementation(platform(libs.compose.bom))
     implementation(platform(libs.coil.bom))
+
+    // Coil3
+    implementation(libs.bundles.ui.coil)
 
     // DI - Hilt
     implementation(libs.bundles.di)

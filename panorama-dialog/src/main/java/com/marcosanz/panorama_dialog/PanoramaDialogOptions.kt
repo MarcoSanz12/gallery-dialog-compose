@@ -3,7 +3,7 @@ package com.marcosanz.panorama_dialog
 import androidx.annotation.DrawableRes
 
 /**
- * Options for customizing the [GalleryDialog]
+ * Options for customizing the [PanoramaDialog]
  *
  * @param error Drawable to show when the image fails to load
  * @param placeholder Drawable to show while the image is loading

@@ -2,19 +2,12 @@ package com.marcosanz.gallery_dialog.util.helper
 
 import android.content.ContentValues
 import android.content.Context
-import android.graphics.drawable.BitmapDrawable
 import android.os.Environment
 import android.provider.MediaStore
 import coil3.Bitmap
-import coil3.SingletonImageLoader
-import coil3.asDrawable
-import coil3.request.ErrorResult
-import coil3.request.ImageRequest
-import coil3.request.SuccessResult
-import com.marcosanz.gallery_dialog.R
+import com.marcosanz.gallery_core_ui.extensions.requestBitmap
 import com.marcosanz.gallery_core_ui.extensions.showToast
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.marcosanz.gallery_dialog.R
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -32,9 +25,9 @@ internal object DownloadHelper {
         // In progress
         context.showImageSaveInProgressToast()
 
-        val bitmap = requestBitmap(
-            context = context,
-            data = data
+        val bitmap = context.requestBitmap(
+            data = data,
+            allowHardware = true
         )
 
         // ❌ Error obtaining Bitmap
@@ -73,41 +66,6 @@ internal object DownloadHelper {
         return currentDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"))
     }
 
-
-    /**
-     * Asynchronously fetches an image from the provided [data] and converts it into a [Bitmap].
-     *
-     * This function uses the Coil image loading library to execute the request. Hardware bitmaps
-     * are disabled to ensure the resulting bitmap can be safely manipulated or saved to storage.
-     *
-     * @param context The context used to initialize the image request and access the image loader.
-     * @param data The data source for the image (e.g., URL, URI, File, or resource ID).
-     *
-     * @return A [Bitmap] representation of the requested image or null if something failed
-     */
-    suspend fun requestBitmap(
-        context: Context,
-        data: Any?,
-    ): Bitmap? = withContext(Dispatchers.IO) {
-
-        if (data == null)
-            return@withContext null
-
-        val loader = SingletonImageLoader.get(context)
-        val request = ImageRequest.Builder(context)
-            .data(data = data)
-            .build()
-
-        when (val result = loader.execute(request)) {
-            is SuccessResult -> {
-                val bitmap =
-                    (result.image.asDrawable(context.resources) as? BitmapDrawable)?.bitmap
-                bitmap
-            }
-
-            is ErrorResult -> null
-        }
-    }
 
     private fun saveBitmapToGallery(
         context: Context,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Content description -->
-    <string name="gallery_dialog_cd_back_button">Back</string>
-    <string name="gallery_dialog_cd_rotate_button">Rotate</string>
+    <string name="gallery_dialog_core_ui_cd_back_button">Back</string>
+    <string name="gallery_dialog_core_ui_cd_rotate_button">Rotate</string>
 
 </resources>

@@ -20,7 +20,7 @@ internal fun PanoramaTopBar(
     modifier: Modifier = Modifier,
     isVisible: Boolean = true,
     isRotateButtonVisible: Boolean = true,
-    isSensorialRotationButtonEnabled: Boolean = true,
+    isSensorialRotationButtonChecked: Boolean = true,
     isSensorialRotationButtonVisible: Boolean = true,
     onBack: () -> Unit = {},
     onRotate: () -> Unit = {},
@@ -35,7 +35,7 @@ internal fun PanoramaTopBar(
         // 🗣️ Sensorial Rotation
         SensorialRotationButton(
             isVisible = isSensorialRotationButtonVisible,
-            enabled = isSensorialRotationButtonEnabled,
+            checked = isSensorialRotationButtonChecked,
             onClick = onSensorialRotation
         )
         // 🔄 Rotate
@@ -44,6 +44,4 @@ internal fun PanoramaTopBar(
             onClick = onRotate
         )
     }
-
-
 }

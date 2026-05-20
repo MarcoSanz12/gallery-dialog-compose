@@ -1,8 +1,13 @@
 package com.marcosanz.gallery_core_ui.ui
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -13,6 +18,10 @@ import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -47,6 +56,8 @@ fun BasicRoundButton(
     modifier: Modifier = Modifier,
     isVisible: Boolean = true,
     enabled: Boolean = true,
+    checked: Boolean = false,
+    checkable: Boolean = false,
     contentDescription: String? = null,
     iconScale: Float = GalleryButtonDefaults.ICON_SCALE,
     colors: ButtonColors = GalleryButtonDefaults.buttonColors,
@@ -55,6 +66,19 @@ fun BasicRoundButton(
     val interactionSource = remember {
         MutableInteractionSource()
     }
+
+    val isPressed by interactionSource.collectIsPressedAsState()
+
+    val scale by animateFloatAsState(
+        targetValue = if (isPressed) 0.95f else 1f,
+        animationSpec = spring()
+    )
+
+    val animatedColors by animateColorsAsState(
+        colors = colors,
+        checked = checked,
+        checkable = checkable
+    )
 
     AnimatedVisibility(
         modifier = modifier
@@ -68,12 +92,17 @@ fun BasicRoundButton(
     ) {
         Button(
             onClick = onClick,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                },
             enabled = enabled,
             shape = CircleShape,
             interactionSource = interactionSource,
             contentPadding = PaddingValues.Zero,
-            colors = colors,
+            colors = animatedColors,
             content = {
                 Icon(
                     modifier = Modifier.graphicsLayer {
@@ -86,7 +115,6 @@ fun BasicRoundButton(
             }
         )
     }
-
 }
 
 @Composable
@@ -99,7 +127,7 @@ fun GalleryRotateButton(
         modifier = modifier,
         isVisible = isVisible,
         icon = painterResource(R.drawable.ic_gallery_dialog_rotate),
-        contentDescription = stringResource(R.string.gallery_dialog_cd_rotate_button),
+        contentDescription = stringResource(R.string.gallery_dialog_core_ui_cd_rotate_button),
         iconScale = 0.9f,
         onClick = onClick
     )
@@ -115,12 +143,42 @@ fun GalleryBackButton(
         modifier = modifier,
         isVisible = isVisible,
         icon = painterResource(R.drawable.ic_gallery_dialog_arrow_back),
-        contentDescription = stringResource(R.string.gallery_dialog_cd_back_button),
+        contentDescription = stringResource(R.string.gallery_dialog_core_ui_cd_back_button),
         onClick = onClick
     )
 }
 
+@Composable
+private fun animateColorsAsState(
+    colors: ButtonColors,
+    checked: Boolean,
+    checkable: Boolean
+): State<ButtonColors> {
+    if (!checkable) return remember(colors) { mutableStateOf(colors) }
 
+    val containerColor = animateColorAsState(
+        targetValue = if (checked) colors.containerColor else colors.disabledContainerColor,
+        animationSpec = tween(durationMillis = 300),
+        label = "ButtonContainerColor"
+    )
+
+    val contentColor = animateColorAsState(
+        targetValue = if (checked) colors.contentColor else colors.disabledContentColor,
+        animationSpec = tween(durationMillis = 300),
+        label = "ButtonContentColor"
+    )
+
+    return remember(colors) {
+        derivedStateOf {
+            ButtonColors(
+                containerColor = containerColor.value,
+                contentColor = contentColor.value,
+                disabledContainerColor = colors.disabledContainerColor,
+                disabledContentColor = colors.disabledContentColor
+            )
+        }
+    }
+}
 
 
 object GalleryButtonDefaults {
@@ -131,5 +189,6 @@ object GalleryButtonDefaults {
             disabledContainerColor = AppColor.blackDarkerTransparent,
             disabledContentColor = AppColor.disabledContent
         )
+
     const val ICON_SCALE: Float = 1.1f
 }

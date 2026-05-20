@@ -14,24 +14,38 @@ class MainViewModel @Inject constructor(
 
     override suspend fun handleAction(action: MainAction) {
         when (action) {
+            // Gallery
             is MainAction.Gallery.OnItemSelect -> galleryItemSelect(item = action.item)
-            MainAction.Gallery.UnselectItem -> galleryUnselect()
+            MainAction.Gallery.UnselectItem -> unselectItems()
+            // Panorama
+            is MainAction.Panorama.OnItemSelect -> panoramaItemSelect(item = action.item)
+            MainAction.Panorama.UnselectItem -> unselectItems()
         }
     }
 
     private fun galleryItemSelect(item: GalleryItem) {
         _uiState.update { state ->
             state.copy(
-                selectedItem = item
+                selectedGalleryIndex = state.galleryItems.indexOf(item),
             )
         }
     }
 
-    private fun galleryUnselect() {
+    private fun panoramaItemSelect(item: GalleryItem) {
         _uiState.update { state ->
             state.copy(
-                selectedItem = null
+                selectedPanoramaIndex = state.panoramaItems.indexOf(item)
             )
         }
     }
+
+    private fun unselectItems() {
+        _uiState.update { state ->
+            state.copy(
+                selectedGalleryIndex = null,
+                selectedPanoramaIndex = null
+            )
+        }
+    }
+
 }

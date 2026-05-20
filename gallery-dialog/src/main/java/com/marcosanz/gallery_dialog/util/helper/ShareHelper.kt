@@ -5,8 +5,9 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.core.content.FileProvider
-import com.marcosanz.gallery_dialog.R
+import com.marcosanz.gallery_core_ui.extensions.requestBitmap
 import com.marcosanz.gallery_core_ui.extensions.showToast
+import com.marcosanz.gallery_dialog.R
 import java.io.File
 
 internal object ShareHelper {
@@ -16,10 +17,13 @@ internal object ShareHelper {
         data: Any?
     ) {
         try {
-            val bitmap = DownloadHelper.requestBitmap(context = context, data = data)
+            val bitmap = context.requestBitmap(
+                data = data,
+                allowHardware = true
+            )
 
             // ❌ Error obtaining Bitmap
-            if (bitmap == null){
+            if (bitmap == null) {
                 context.showErrorSharingToast()
                 return
             }
@@ -72,7 +76,7 @@ internal object ShareHelper {
         return file
     }
 
-    private fun Context.showErrorSharingToast(){
+    private fun Context.showErrorSharingToast() {
         showToast(getString(R.string.gallery_dialog_share_error))
     }
 }

@@ -10,4 +10,8 @@ sealed interface MainAction {
         object UnselectItem : MainAction
     }
 
+    sealed interface Panorama : MainAction{
+        data class OnItemSelect(val item : GalleryItem) : MainAction
+        object UnselectItem : MainAction
+    }
 }

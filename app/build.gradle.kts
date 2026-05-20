@@ -87,6 +87,7 @@ dependencies {
     ksp(libs.androidx.hilt.compiler)
 
     implementation(project(":gallery-dialog"))
+    implementation(project(":panorama-dialog"))
     implementation(project(":gallery-core-ui"))
     implementation(platform(libs.compose.bom))
     implementation(platform(libs.coil.bom))

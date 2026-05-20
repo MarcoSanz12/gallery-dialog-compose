@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,13 +25,15 @@ import com.marcosanz.gallery_common.model.GalleryItem
 import com.marcosanz.gallery_core_ui.ui.BasicBottomBar
 import com.marcosanz.gallery_core_ui.util.controller.EdgeToEdgeController
 import com.marcosanz.gallery_core_ui.util.controller.OrientationController
+import com.marcosanz.panorama_dialog.ui.component.PanoramaAndroidView
 import com.marcosanz.panorama_dialog.ui.component.PanoramaTopBar
 import com.marcosanz.panorama_dialog.util.extension.rememberPanoramaDialogOptions
+import com.marcosanz.panorama_dialog.util.extension.rememberPlManager
 
 @Preview
 @Composable
-private fun GalleryDialogPreview() {
-    GalleryDialog(
+private fun PanoramaDialogPreview() {
+    PanoramaDialog(
         item =
             GalleryItem(
                 model = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdnSj_ePgbGDuzLJwvMXBneYkiVU9aPqY7pZEDvXty5mUFtDoMlmyVb3piUk6uqeC1rWnDFETXX7QRtBDWItAo74ipNslZF9j9uYKyNW0&s=10"
@@ -49,16 +53,21 @@ private fun GalleryDialogPreview() {
  *
  */
 @Composable
-fun GalleryDialog(
+fun PanoramaDialog(
     item: GalleryItem,
     options: PanoramaDialogOptions = rememberPanoramaDialogOptions(),
     onDismissRequest: () -> Unit,
 ) {
-    var isUiVisible by remember(options.isUiVisible) {
+    val context: Context = LocalContext.current
+
+    val plManager = rememberPlManager()
+
+    var isUiVisible by rememberSaveable(options.isUiVisible) {
         mutableStateOf(options.isUiVisible)
     }
-
-    val context: Context = LocalContext.current
+    var isSensorialRotationEnabled by mutableSensorialRotationState(
+        options = options
+    )
 
     Dialog(
         onDismissRequest = onDismissRequest,
@@ -78,12 +87,22 @@ fun GalleryDialog(
 
                 ResetOrientationEffect(context = context)
 
+                PanoramaAndroidView(
+                    model = item.model,
+                    isSensorialRotationEnabled = isSensorialRotationEnabled,
+                    plManager = plManager,
+                    onSingleTap = {
+                        isUiVisible = !isUiVisible
+                        true
+                    }
+                )
+
                 // TopBar
                 PanoramaTopBar(
                     isVisible = isUiVisible,
                     modifier = Modifier.fillMaxWidth(),
                     isRotateButtonVisible = options.isRotationButtonVisible,
-                    isSensorialRotationButtonEnabled = options.isSensorialRotationButtonEnabled,
+                    isSensorialRotationButtonChecked = isSensorialRotationEnabled,
                     isSensorialRotationButtonVisible = options.isSensorialRotationButtonVisible,
                     onBack = {
                         onDismissRequest()
@@ -92,7 +111,7 @@ fun GalleryDialog(
                         OrientationController.toggleOrientation(context = context)
                     },
                     onSensorialRotation = {
-
+                        isSensorialRotationEnabled = !isSensorialRotationEnabled
                     }
                 )
 
@@ -108,6 +127,17 @@ fun GalleryDialog(
                 )
             }
         }
+    )
+}
+
+@Composable
+private fun mutableSensorialRotationState(
+    options: PanoramaDialogOptions
+): MutableState<Boolean> = rememberSaveable(
+    options.isSensorialRotationButtonEnabled
+) {
+    mutableStateOf(
+        options.isSensorialRotationButtonEnabled
     )
 }
 

@@ -5,7 +5,7 @@ import com.marcosanz.gallery_common.model.GalleryItem
 
 object ExampleItemsProvider {
     // GalleryItems with Drawables
-    val drawableItems = listOf(
+    val galleryItems = listOf(
         GalleryItem(
             model = R.drawable.drawable_cuellar1,
             description = "Drawable - Front view of the Cuéllar Castle, Valladolid, Spain"
@@ -13,6 +13,10 @@ object ExampleItemsProvider {
         GalleryItem(
             model = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPc7FmzOQ6GRuFgJBOBO2IZqu7vcPdF3zg4w&s",
             description = "URL - Guillermo Diaz Ibañez"
+        ),
+        GalleryItem(
+          model = R.drawable.image_ultra_quality,
+            description = "Drawable - Kris Guico from Unsplash (9216x4046)"
         ),
         GalleryItem(
             model = R.drawable.drawable_cuellar2,
@@ -44,8 +48,21 @@ object ExampleItemsProvider {
         )
     )
 
-    val allLists = listOf(
-        drawableItems
+    val panoramaItems = listOf(
+        GalleryItem(
+            model = "https://media.macphun.com/img/uploads/customer/blog/2432/169339558164ef2a7d7179d5.77274305.jpg?q=85&w=1680",
+            description = "URL - Test Panorama"
+        ),
+        GalleryItem(
+            model = R.drawable.image360_ultra_quality,
+            description = "Drawable - Image native resolution 15204 x 4620"
+        ),
+        GalleryItem(
+            model = R.drawable.image360_1,
+            description = "Drawable - Image 360"
+        ),
+        GalleryItem(
+            model = R.drawable.image360_2,
+        )
     )
-
 }

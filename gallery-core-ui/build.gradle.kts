@@ -41,6 +41,7 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(platform(libs.coil.bom))
     api(libs.bundles.ui)
+    api(libs.bundles.ui.coil)
 
     // TEST
     testImplementation(libs.bundles.test.core)

@@ -21,7 +21,8 @@ private fun PanoramaButtonsPreview() {
 internal fun SensorialRotationButton(
     modifier: Modifier = Modifier,
     isVisible: Boolean = true,
-    enabled : Boolean = true,
+    enabled: Boolean = true,
+    checked: Boolean = true,
     onClick: () -> Unit
 ) {
     BasicRoundButton(
@@ -29,6 +30,8 @@ internal fun SensorialRotationButton(
         isVisible = isVisible,
         enabled = enabled,
         iconScale = 0.95f,
+        checkable = true,
+        checked = checked,
         icon = painterResource(R.drawable.ic_gallery_dialog_sensorial_rotation),
         contentDescription = stringResource(R.string.gallery_dialog_cd_sensorial_rotation),
         onClick = onClick

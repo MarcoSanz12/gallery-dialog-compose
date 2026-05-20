@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gallery_dialog_cd_more_button">Máis opcións</string>
+    <string name="gallery_dialog_cd_download_button">Descargar</string>
+    <string name="gallery_dialog_cd_share_button">Compartir</string>
+    <string name="gallery_dialog_download_progress">Descargando imaxe…</string>
+    <string name="gallery_dialog_download_success">Imaxe gardada</string>
+    <string name="gallery_dialog_download_failure">Erro ao gardar a imaxe</string>
+    <string name="gallery_dialog_share_image_title">Compartir imaxe</string>
+    <string name="gallery_dialog_share_error">Erro ao compartir a imaxe</string>
+</resources>

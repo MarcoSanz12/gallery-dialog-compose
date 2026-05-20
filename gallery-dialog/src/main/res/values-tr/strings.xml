@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gallery_dialog_cd_more_button">Daha fazla seçenek</string>
+    <string name="gallery_dialog_cd_download_button">İndir</string>
+    <string name="gallery_dialog_cd_share_button">Paylaş</string>
+    <string name="gallery_dialog_download_progress">Görüntü indiriliyor…</string>
+    <string name="gallery_dialog_download_success">Görüntü kaydedildi</string>
+    <string name="gallery_dialog_download_failure">Görüntü kaydedilirken hata oluştu</string>
+    <string name="gallery_dialog_share_image_title">Görüntüyü paylaş</string>
+    <string name="gallery_dialog_share_error">Görüntü paylaşılırken hata oluştu</string>
+</resources>

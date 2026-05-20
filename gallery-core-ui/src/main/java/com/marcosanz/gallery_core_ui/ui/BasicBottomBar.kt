@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Text
@@ -153,7 +155,7 @@ private fun BasicBottomBarContainer(
                 .background(color = AppColor.blackTransparent)
                 .padding(horizontal = AppPadding.extraLarge)
                 .padding(top = AppPadding.medium, bottom = AppPadding.small)
-                .navigationBarsPadding()
+                .systemBarsPadding()
         ) {
             content()
         }

@@ -32,11 +32,6 @@ android {
         }
     }
 
-    // TODO Declarar idiomas de la app
-    androidResources {
-        localeFilters += listOf("es", "en", "fr", "de")
-    }
-
     configurations.all {
         resolutionStrategy {
             force("org.jetbrains:annotations:23.0.0")

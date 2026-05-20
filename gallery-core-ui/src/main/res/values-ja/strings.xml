@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gallery_dialog_core_ui_cd_back_button">戻る</string>
+    <string name="gallery_dialog_core_ui_cd_rotate_button">回転</string>
+</resources>

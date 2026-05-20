@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gallery_dialog_cd_more_button">더 많은 옵션</string>
+    <string name="gallery_dialog_cd_download_button">다운로드</string>
+    <string name="gallery_dialog_cd_share_button">공유</string>
+    <string name="gallery_dialog_download_progress">이미지 다운로드 중…</string>
+    <string name="gallery_dialog_download_success">이미지 저장됨</string>
+    <string name="gallery_dialog_download_failure">이미지 저장 중 오류 발생</string>
+    <string name="gallery_dialog_share_image_title">이미지 공유</string>
+    <string name="gallery_dialog_share_error">이미지 공유 중 오류 발생</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gallery_dialog_cd_more_button">その他のオプション</string>
+    <string name="gallery_dialog_cd_download_button">ダウンロード</string>
+    <string name="gallery_dialog_cd_share_button">共有</string>
+    <string name="gallery_dialog_download_progress">画像をダウンロード中…</string>
+    <string name="gallery_dialog_download_success">画像を保存しました</string>
+    <string name="gallery_dialog_download_failure">画像の保存中にエラーが発生しました</string>
+    <string name="gallery_dialog_share_image_title">画像を共有</string>
+    <string name="gallery_dialog_share_error">画像の共有中にエラーが発生しました</string>
+</resources>

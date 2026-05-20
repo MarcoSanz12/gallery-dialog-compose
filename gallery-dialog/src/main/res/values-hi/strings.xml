@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gallery_dialog_cd_more_button">अधिक विकल्प</string>
+    <string name="gallery_dialog_cd_download_button">डाउनलोड</string>
+    <string name="gallery_dialog_cd_share_button">साझा करें</string>
+    <string name="gallery_dialog_download_progress">छवि डाउनलोड हो रही है…</string>
+    <string name="gallery_dialog_download_success">छवि सहेजी गई</string>
+    <string name="gallery_dialog_download_failure">छवि सहेजने में त्रुटि</string>
+    <string name="gallery_dialog_share_image_title">छवि साझा करें</string>
+    <string name="gallery_dialog_share_error">छवि साझा करने में त्रुटि</string>
+</resources>

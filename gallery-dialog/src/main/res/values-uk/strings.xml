@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gallery_dialog_cd_more_button">Більше опцій</string>
+    <string name="gallery_dialog_cd_download_button">Завантажити</string>
+    <string name="gallery_dialog_cd_share_button">Поділитися</string>
+    <string name="gallery_dialog_download_progress">Завантаження зображення…</string>
+    <string name="gallery_dialog_download_success">Зображення збережено</string>
+    <string name="gallery_dialog_download_failure">Помилка під час збереження зображення</string>
+    <string name="gallery_dialog_share_image_title">Поділитися зображенням</string>
+    <string name="gallery_dialog_share_error">Помилка під час обміну зображенням</string>
+</resources>

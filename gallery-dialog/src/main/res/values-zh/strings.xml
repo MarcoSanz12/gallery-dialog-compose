@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gallery_dialog_cd_more_button">更多选项</string>
+    <string name="gallery_dialog_cd_download_button">下载</string>
+    <string name="gallery_dialog_cd_share_button">分享</string>
+    <string name="gallery_dialog_download_progress">正在下载图片…</string>
+    <string name="gallery_dialog_download_success">图片已保存</string>
+    <string name="gallery_dialog_download_failure">保存图片时出错</string>
+    <string name="gallery_dialog_share_image_title">分享图片</string>
+    <string name="gallery_dialog_share_error">分享图片时出错</string>
+</resources>

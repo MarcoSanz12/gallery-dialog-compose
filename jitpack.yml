@@ -1,0 +1,9 @@
+jdk:
+  - openjdk21
+before_install:
+  - chmod +x gradlew
+install:
+  - ./gradlew :gallery-dialog:publishToMavenLocal -Pgroup=com.github.marcosanz
+  - ./gradlew :panorama-dialog:publishToMavenLocal -Pgroup=com.github.marcosanz
+  - ./gradlew :gallery-common:publishToMavenLocal -Pgroup=com.github.marcosanz
+  - ./gradlew :gallery-core-ui:publishToMavenLocal -Pgroup=com.github.marcosanz

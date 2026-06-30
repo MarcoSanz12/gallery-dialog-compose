@@ -1,28 +1,18 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.convention.android.library)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "com.marcosanz.gallery_common"
-    compileSdk {
-        version = release(36)
-    }
 
-    defaultConfig {
-        minSdk = 26
+    buildFeatures {
+        compose = true
     }
+}
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
-    }
+dependencies {
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.runtime)
 }

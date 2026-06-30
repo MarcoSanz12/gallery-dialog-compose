@@ -3,6 +3,7 @@ import com.android.build.api.dsl.LibraryExtension
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.ksp) apply false
 }
 
@@ -13,7 +14,10 @@ subprojects {
 
         extensions.configure<LibraryExtension> {
             publishing {
-                singleVariant("release")
+                singleVariant("release"){
+                    withSourcesJar()
+                    withJavadocJar()
+                }
             }
         }
 

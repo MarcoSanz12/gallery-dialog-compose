@@ -7,16 +7,14 @@ plugins {
 
 android {
     namespace = "com.marcosanz.app"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.marcosanz.gallerydialog_compose"
         minSdk = 26
-        targetSdk = 36
-        versionCode = 1
-        versionName = "0.0.1"
+        targetSdk = 37
+        versionCode = 2
+        versionName = "0.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -65,6 +63,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
             //TODO signingConfig = signingConfigs.getByName("release")
         }
     }
